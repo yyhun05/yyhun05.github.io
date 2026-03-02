@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>颜淑婷 · 个人主页</title>
-    <!-- Font Awesome 6 (免费图标库) 用于头像/图标 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Font Awesome 6 (修复：移除URL末尾空格) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* 全局重置与字体 */
         * {
@@ -18,7 +18,6 @@
         body {
             min-height: 100vh;
             background: linear-gradient(145deg, #f6f9fc 0%, #e6f0fa 100%);
-            /* 柔和的渐变背景 */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -26,13 +25,13 @@
             padding: 1.5rem 1.5rem 0;
         }
 
-        /* 主容器 – 最大宽度，优雅居中 */
+        /* 主容器 */
         .page {
             max-width: 1200px;
             width: 100%;
         }
 
-        /* ---------- 导航栏 (flex) ---------- */
+        /* ---------- 导航栏 ---------- */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -64,6 +63,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+            cursor: pointer;
         }
 
         .nav-links {
@@ -72,13 +72,17 @@
             list-style: none;
         }
 
+        /* 修复：添加a标签样式 */
         .nav-links a {
             text-decoration: none;
             font-weight: 500;
             color: #1e2a3a;
             font-size: 1rem;
             transition: color 0.2s ease, transform 0.2s ease;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
         }
 
         .nav-links a:hover {
@@ -86,7 +90,7 @@
             transform: translateY(-2px);
         }
 
-        /* 手机端导航 (响应式) */
+        /* 手机端导航 */
         @media (max-width: 600px) {
             .navbar {
                 padding: 0.8rem 1.5rem;
@@ -94,9 +98,12 @@
             .nav-links {
                 gap: 1.2rem;
             }
+            .nav-links a {
+                font-size: 0.9rem;
+            }
         }
 
-        /* ---------- 个人卡片 (grid / flex混合) ---------- */
+        /* ---------- 个人卡片 ---------- */
         .intro-card {
             background: white;
             border-radius: 40px;
@@ -111,11 +118,11 @@
             gap: 2.5rem;
         }
         .intro-card:hover {
-            box-shadow: 0 30px 50px -16px #0a66c2;
+            box-shadow: 0 30px 50px -16px rgba(10, 102, 194, 0.3);
             transform: scale(1.01);
         }
 
-        /* 头像区 (纯色圆形 + Font Awesome图标) */
+        /* 头像区 */
         .avatar {
             flex-shrink: 0;
             width: 130px;
@@ -150,13 +157,6 @@
             margin-bottom: 0.5rem;
         }
 
-        .intro-text .highlight {
-            color: #0a66c2;
-            border-bottom: 3px solid #0a66c2;
-            display: inline-block;
-            padding-bottom: 4px;
-        }
-
         .intro-text .subtitle {
             font-size: 1.3rem;
             color: #2f3e57;
@@ -181,10 +181,11 @@
             background: #f0f7fe;
             padding: 0.8rem 1.5rem;
             border-radius: 40px;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
         }
 
-        /* ---------- 技能标签 (flex布局) ---------- */
+        /* ---------- 技能标签 ---------- */
         .skills-section {
             margin-bottom: 3rem;
         }
@@ -222,6 +223,7 @@
             align-items: center;
             gap: 8px;
             font-size: 1.1rem;
+            cursor: default;
         }
         .skill-tag i {
             color: #0a66c2;
@@ -230,17 +232,17 @@
             background: #0a66c2;
             color: white;
             transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 12px 16px -8px #0a66c2;
+            box-shadow: 0 12px 16px -8px rgba(10,102,194,0.4);
             border-color: transparent;
         }
         .skill-tag:hover i {
             color: white;
         }
 
-        /* ---------- 项目卡片 (grid布局) ---------- */
+        /* ---------- 项目卡片 ---------- */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin: 2rem 0 3rem;
         }
@@ -256,13 +258,14 @@
             transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.2);
             display: flex;
             flex-direction: column;
+            min-height: 280px;
         }
 
         .project-card:hover {
             transform: translateY(-10px);
             background: white;
             border-color: #0a66c2;
-            box-shadow: 0 30px 40px -16px #0a66c2;
+            box-shadow: 0 30px 40px -16px rgba(10,102,194,0.25);
         }
 
         .project-icon {
@@ -324,11 +327,13 @@
             gap: 2rem;
         }
 
+        /* 修复：添加a标签包裹 */
         .footer-links a {
             color: #2d3c53;
             text-decoration: none;
             transition: 0.2s;
             font-size: 1.2rem;
+            display: inline-flex;
         }
 
         .footer-links a:hover {
@@ -340,18 +345,20 @@
             color: #0a66c2;
         }
 
-        /* 超小屏微调 */
+        /* 响应式微调 */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 480px) {
             body { padding: 0.8rem; }
-            .intro-card { padding: 2rem 1.2rem; }
+            .intro-card { padding: 2rem 1.2rem; gap: 1.5rem; }
             .intro-text h1 { font-size: 2.2rem; }
             .avatar { width: 100px; height: 100px; font-size: 3rem; }
             .footer { flex-direction: column; gap: 1rem; text-align: center; }
-        }
-
-        /* 辅助间距 */
-        .spacer {
-            height: 1rem;
+            .section-title { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -361,22 +368,23 @@
         <nav class="navbar">
             <div class="logo"><i class="fa-regular fa-star"></i></div>
             <ul class="nav-links">
-                <li><i class="fa-regular fa-house" style="margin-right: 4px;"></i>首页</li>
-                <li><i class="fa-regular fa-address-card"></i> 关于</li>
-                <li><i class="fa-regular fa-folder"></i> 项目</li>
-                <li><i class="fa-regular fa-envelope"></i> 联系</li>
+                <!-- 修复：添加<a>标签 -->
+                <li><a href="#"><i class="fa-solid fa-house"></i> 首页</a></li>
+                <li><a href="#"><i class="fa-solid fa-address-card"></i> 关于</a></li>
+                <li><a href="#"><i class="fa-solid fa-folder"></i> 项目</a></li>
+                <li><a href="#"><i class="fa-solid fa-envelope"></i> 联系</a></li>
             </ul>
         </nav>
 
-        <!-- 个人介绍卡片 (头像 + 姓名/简介) -->
+        <!-- 个人介绍卡片 -->
         <div class="intro-card">
             <div class="avatar">
-                <i class="fa-solid fa-graduation-cap"></i>  <!-- 使用毕业帽图标 符合要求 -->
+                <i class="fa-solid fa-graduation-cap"></i>
             </div>
             <div class="intro-text">
                 <h1>颜淑婷</h1>
                 <div class="subtitle">
-                    <i class="fa-regular fa-laptop-code"></i>     
+                    <i class="fa-solid fa-laptop-code"></i>     
                     <span>软件工程 大三 · JAVA方向</span>
                 </div>
                 <div class="intro-desc">
@@ -389,68 +397,62 @@
         <!-- 技能标签区域 -->
         <div class="skills-section">
             <div class="section-title">
-                <i class="fa-regular fa-code"></i> 
+                <i class="fa-solid fa-code"></i> 
                 <span>技术栈 & 兴趣</span>
             </div>
             <div class="skill-tags">
                 <span class="skill-tag"><i class="fa-brands fa-html5"></i> HTML</span>
                 <span class="skill-tag"><i class="fa-brands fa-css3-alt"></i> CSS</span>
                 <span class="skill-tag"><i class="fa-brands fa-js"></i> JavaScript</span>
-                <!-- 为了美观多两个占位标签，突出学习方向，但技能保持作业要求的3个。额外标签不写具体技能，只做氛围 -->
                 <span class="skill-tag"><i class="fa-brands fa-java"></i> Java (学习中)</span>
-                <span class="skill-tag"><i class="fa-regular fa-database"></i> SQL</span>
+                <span class="skill-tag"><i class="fa-solid fa-database"></i> SQL</span>
             </div>
         </div>
 
-        <!-- 项目展示占位卡片 (至少3个) 使用grid响应式 -->
+        <!-- 项目展示 -->
         <div class="section-title" style="margin-bottom: 0.5rem;">
-            <i class="fa-regular fa-diagram-project"></i>
+            <i class="fa-solid fa-diagram-project"></i>
             <span>项目练习</span>
         </div>
         <div class="projects-grid">
-            <!-- 卡片 1 -->
             <div class="project-card">
-                <div class="project-icon"><i class="fa-regular fa-pen-to-square"></i></div>
+                <div class="project-icon"><i class="fa-solid fa-pen-to-square"></i></div>
                 <h3>待办清单 CLI</h3>
-                <p>基于Java的命令行待办应用，练习集合类与文件IO，支持增删改查、优先级标记。</p >
+                <p>基于Java的命令行待办应用，练习集合类与文件IO，支持增删改查、优先级标记。</p>
                 <span class="project-tag">Java · 控制台</span>
             </div>
-            <!-- 卡片 2 -->
             <div class="project-card">
-                <div class="project-icon"><i class="fa-regular fa-display"></i></div>
+                <div class="project-icon"><i class="fa-solid fa-display"></i></div>
                 <h3>个人博客雏形</h3>
-                <p>用HTML/CSS/JS制作的极简博客页面，包含文章卡片和暗色模式切换（JS实现）。</p >
+                <p>用HTML/CSS/JS制作的极简博客页面，包含文章卡片和暗色模式切换（JS实现）。</p>
                 <span class="project-tag">HTML/CSS/JS</span>
             </div>
-            <!-- 卡片 3 -->
             <div class="project-card">
-                <div class="project-icon"><i class="fa-regular fa-cloud"></i></div>
+                <div class="project-icon"><i class="fa-solid fa-cloud"></i></div>
                 <h3>天气小部件</h3>
-                <p>调用免费天气API，展示实时温度与图标，练习fetch与promise。 (占位描述)</p >
+                <p>调用免费天气API，展示实时温度与图标，练习fetch与promise。</p>
                 <span class="project-tag">JavaScript API</span>
             </div>
-            <!-- 卡片 4 (多一个更饱满，但仍满足≥3) -->
             <div class="project-card">
-                <div class="project-icon"><i class="fa-regular fa-rectangle-ad"></i></div>
+                <div class="project-icon"><i class="fa-solid fa-book"></i></div>
                 <h3>图书管理系统</h3>
-                <p>课程设计：简单的图书管理 (Java + 数组模拟)，实现借阅、归还、查找。</p >
+                <p>课程设计：简单的图书管理 (Java + 数组模拟)，实现借阅、归还、查找。</p>
                 <span class="project-tag">Java 基础</span>
             </div>
         </div>
 
-        <!-- 页脚区域 -->
+        <!-- 页脚 -->
         <footer class="footer">
             <div class="footer-copy">
                 <i class="fa-regular fa-copyright"></i> 2026 颜淑婷 · 用 <i class="fa-solid fa-heart" style="color: #0a66c2;"></i> 书写代码
             </div>
             <div class="footer-links">
-                <i class="fa-brands fa-github"></i>
-                <i class="fa-brands fa-bilibili"></i>
-                <i class="fa-regular fa-envelope"></i>
+                <!-- 修复：添加<a>标签 -->
+                <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" title="Bilibili"><i class="fa-brands fa-bilibili"></i></a>
+                <a href="#" title="Email"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </footer>
     </div>
-
-    <!-- 不需要额外脚本，只做静态展示。但加一小段悬停微细节 已全在style中 -->
 </body>
 </html>
